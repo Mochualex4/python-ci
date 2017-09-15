@@ -1,11 +1,13 @@
 machine:
   python:
     version: 3.6.1
-
 dependencies:
   override:
     - pip install -r requirements.txt
-
 test:
   override:
-    - nosetests test/math-test.py
+    - nosetests tests/math-test.py
+  post:
+    - coverage run src/*.py
+    - coverage report
+    - coveralls
